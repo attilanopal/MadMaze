@@ -35,7 +35,6 @@ public class GameFunctions : MonoBehaviour
 
     public void MainScene()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(0);
     }
 
