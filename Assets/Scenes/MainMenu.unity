@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 97743878}
-  - component: {fileID: 97743877}
+  - component: {fileID: 97743879}
   m_Layer: 0
   m_Name: script
   m_TagString: Untagged
@@ -140,23 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &97743877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97743876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4cfd56d4175894d981a62bfe7af854, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pausePanel: {fileID: 0}
-  textInfo: {fileID: 0}
-  isPaused: 0
-  sen: {fileID: 0}
-  cam: {fileID: 0}
 --- !u!4 &97743878
 Transform:
   m_ObjectHideFlags: 0
@@ -172,6 +155,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97743879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97743876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36371eeb406d4242bf168392e26d6ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &559911105
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,8 +251,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 97743877}
-        m_TargetAssemblyTypeName: GameFunctions, Assembly-CSharp
+      - m_Target: {fileID: 97743879}
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
         m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
@@ -525,8 +520,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 97743877}
-        m_TargetAssemblyTypeName: GameFunctions, Assembly-CSharp
+      - m_Target: {fileID: 97743879}
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
         m_MethodName: SettingScene
         m_Mode: 1
         m_Arguments:
@@ -862,8 +857,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 97743877}
-        m_TargetAssemblyTypeName: GameFunctions, Assembly-CSharp
+      - m_Target: {fileID: 97743879}
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:

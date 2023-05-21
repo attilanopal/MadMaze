@@ -306,6 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328439140}
   - component: {fileID: 328439141}
+  - component: {fileID: 328439142}
   m_Layer: 0
   m_Name: scripts
   m_TagString: Untagged
@@ -341,6 +342,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sen: {fileID: 1252983604}
+--- !u!114 &328439142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328439138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36371eeb406d4242bf168392e26d6ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &359000233
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,8 +515,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameFunctions, Assembly-CSharp
+      - m_Target: {fileID: 328439142}
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
         m_MethodName: MainScene
         m_Mode: 1
         m_Arguments:
