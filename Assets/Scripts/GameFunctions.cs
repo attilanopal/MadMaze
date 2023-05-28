@@ -10,32 +10,47 @@ public class GameFunctions : MonoBehaviour
     public TMP_Text textInfo;
     public bool isPaused;
     public FpsMovement cam;
+    public TMP_Text sen;
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         isPaused = false;
-        cam.sensitivity = PlayerPrefs.GetFloat("sensitivity", 5.0f);
+        cam.ChangeSens(PlayerPrefs.GetFloat("sensitivity", 5.0f));
+        if (PlayerPrefs.GetFloat("sensitivity") == 0.0f) // wrote this since it would give me 0 instead of setted default value (5.0f)
+        {
+            PlayerPrefs.SetFloat("sensitivity", 5.0f);
+            cam.ChangeSens(PlayerPrefs.GetFloat("sensitivity"));
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel") == true)
+        {
+            Pause();
+        }
     }
 
     public void Pause()
     {
         if (isPaused == false)
         {
-            /*Time.timeScale = 0;
+            Time.timeScale = 0;
             pausePanel.SetActive(true);
-            sen.text = cam.sensitivity.ToString();
+            sen.text = "Ur Sens : " + cam.sensitivity.ToString();
             textInfo.text = "Game is Paused";
             Cursor.lockState = CursorLockMode.None;
-            isPaused = true;*/
+            isPaused = true;
         }
         else
         {
-            /*Time.timeScale = 1;
+            Time.timeScale = 1;
             pausePanel.SetActive(false);
             textInfo.text = "Press Esc to Pause";
             Cursor.lockState = CursorLockMode.Locked;
-            isPaused = false;*/
+            isPaused = false;
         }
     }
 

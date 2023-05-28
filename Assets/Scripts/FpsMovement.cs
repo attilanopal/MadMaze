@@ -9,6 +9,7 @@ public class FpsMovement : MonoBehaviour
 
     public float sensitivity = 5f;
     public Transform orientation;
+    public GameFunctions gameFun; 
 
     private void Start()
     {
@@ -18,11 +19,19 @@ public class FpsMovement : MonoBehaviour
 
     private void Update()
     {
+        if (gameFun.isPaused != true)
+        {
             rotationY += Input.GetAxis("Mouse X") * sensitivity;
             rotationX += Input.GetAxis("Mouse Y") * -1 * sensitivity;
             rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
             transform.localEulerAngles = new Vector3(rotationX, rotationY, 0);
             orientation.localEulerAngles = new Vector3(0, rotationY, 0);
+        }
+    }
+
+    public void ChangeSens(float sensValue)
+    {
+        sensitivity = sensValue;
     }
 }
