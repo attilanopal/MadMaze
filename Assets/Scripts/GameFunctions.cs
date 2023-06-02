@@ -7,16 +7,23 @@ using UnityEngine.SceneManagement;
 public class GameFunctions : MonoBehaviour
 {
     public GameObject pausePanel;
+    public GameObject deathPanel;
+
     public TMP_Text textInfo;
-    public bool isPaused;
-    public FpsMovement cam;
     public TMP_Text sen;
+
+    public bool isPaused;
+    private bool isAlive;
+
+    public FpsMovement cam;
+    
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         isPaused = false;
+        isAlive = true;
         cam.ChangeSens(PlayerPrefs.GetFloat("sensitivity", 5.0f));
         if (PlayerPrefs.GetFloat("sensitivity") == 0.0f) // wrote this since it would give me 0 instead of setted default value (5.0f)
         {
@@ -27,7 +34,7 @@ public class GameFunctions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel") == true)
+        if (Input.GetButtonDown("Cancel") == true && isAlive == true)
         {
             Pause();
         }
@@ -54,5 +61,23 @@ public class GameFunctions : MonoBehaviour
         }
     }
 
+    /**
+     * Fungsi Catched akan dijalankan apabila ghost menyentuh player
+     * 
+     */
+    public void Catched()
+    {
+        Time.timeScale = 0;
+        deathPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        isPaused = true;
+        isAlive = false;
+    }
+
+    public void Win()
+    {
+        pausePanel.SetActive(true);
+        sen.text = "Njirr jago amat!";
+    }
 
 }
