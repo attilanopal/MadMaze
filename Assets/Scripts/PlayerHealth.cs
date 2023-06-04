@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,18 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxLives = 3; // Jumlah maksimum nyawa
     private int currentLives; // Jumlah nyawa saat ini
-    private Vector3 lastCheckpoint; // Posisi checkpoint terakhir
+    public Vector3 lastCheckpoint; // Posisi checkpoint terakhir
 
     private bool isDead = false; // Status pemain (hidup/mati)
 
     public GameObject deathPanel; // Panel "You are dead"
+    public GameObject ghost; // gameobjek hantu
+    public GameFunctions gameFun;
+
+    public int GetCurrentLive()
+    {
+        return currentLives;
+    }
 
     private void Start()
     {
@@ -18,6 +26,11 @@ public class PlayerHealth : MonoBehaviour
         lastCheckpoint = transform.position;
     }
 
+
+    /*** Fungsi kalau player collide dengan hantu
+     * 
+     * 
+     */
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ghost") && !isDead)
@@ -26,14 +39,18 @@ public class PlayerHealth : MonoBehaviour
 
             if (currentLives > 0)
             {
-                ShowDeathPanel();
+                Death();
             }
             else
             {
-                // Player kehabisan nyawa
                 GameOver();
             }
         }
+    }
+
+    private void Death()
+    {
+        gameFun.ShowDeathPanel();
     }
 
     private void Respawn()
@@ -42,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
         // Lakukan pengaturan ulang lainnya yang diperlukan
 
         // Menampilkan panel "You are dead"
-        ShowDeathPanel();
+        gameFun.ShowDeathPanel();
     }
 
     private void GameOver()
@@ -50,17 +67,13 @@ public class PlayerHealth : MonoBehaviour
         // Lakukan tindakan yang sesuai untuk kondisi game over, seperti menampilkan skor akhir, menyimpan skor tertinggi, dll.
 
         // Menampilkan panel "You are dead"
-        ShowDeathPanel();
+        gameFun.ShowDeathPanel();
     }
 
     /** Panel ini buat kalau user nyentuh hantu tapi belum mati "mati" (masi ada nyawa)
      * bakal nunjukin teks km sdh mati, terus button back to last checkpoint & back to menu
      */
-    private void ShowDeathPanel() 
-    {
-        deathPanel.SetActive(true);
-        // Lakukan pengaturan lainnya untuk menampilkan panel "You are dead"
-    }
+    
 
     public void SetCheckpoint(Vector3 checkpointPosition)
     {

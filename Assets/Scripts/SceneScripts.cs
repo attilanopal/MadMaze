@@ -26,6 +26,11 @@ public class SceneScripts : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadScene(string SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
+    }
+
     public void Restart()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
