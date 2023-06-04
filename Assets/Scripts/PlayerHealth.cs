@@ -26,8 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (currentLives > 0)
             {
-                // Player masih memiliki nyawa
-                Respawn();
+                ShowDeathPanel();
             }
             else
             {
@@ -54,7 +53,10 @@ public class PlayerHealth : MonoBehaviour
         ShowDeathPanel();
     }
 
-    private void ShowDeathPanel()
+    /** Panel ini buat kalau user nyentuh hantu tapi belum mati "mati" (masi ada nyawa)
+     * bakal nunjukin teks km sdh mati, terus button back to last checkpoint & back to menu
+     */
+    private void ShowDeathPanel() 
     {
         deathPanel.SetActive(true);
         // Lakukan pengaturan lainnya untuk menampilkan panel "You are dead"
