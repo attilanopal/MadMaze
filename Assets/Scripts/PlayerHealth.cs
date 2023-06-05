@@ -56,9 +56,6 @@ public class PlayerHealth : MonoBehaviour
     private void Respawn()
     {
         transform.position = lastCheckpoint;
-        // Lakukan pengaturan ulang lainnya yang diperlukan
-
-        // Menampilkan panel "You are dead"
         gameFun.ShowDeathPanel();
     }
 
@@ -67,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
         // Lakukan tindakan yang sesuai untuk kondisi game over, seperti menampilkan skor akhir, menyimpan skor tertinggi, dll.
 
         // Menampilkan panel "You are dead"
-        gameFun.ShowDeathPanel();
+        gameFun.ShowGameOverPanel();
     }
 
     /** Panel ini buat kalau user nyentuh hantu tapi belum mati "mati" (masi ada nyawa)

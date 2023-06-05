@@ -9,6 +9,27 @@ public class SceneScripts : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    public void PlayGame()
+    {
+        int finishedLevel = PlayerPrefs.GetInt("saveLevel",-1);
+        if (finishedLevel >= -1)
+        {
+            LoadScene("Tutorial");
+        }
+        if (finishedLevel >= 0)
+        {
+            LoadScene("Level1");
+        }
+        if (finishedLevel >= 1)
+        {
+            LoadScene("Level2");
+        }
+        if (finishedLevel >= 2)
+        {
+            LoadScene("Level3");
+        }
+    }
 
     public void NextScene()
     {
@@ -16,10 +37,6 @@ public class SceneScripts : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    public void SettingScene()
-    {
-        SceneManager.LoadScene(2);
-    }
 
     public void MainScene()
     {

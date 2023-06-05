@@ -20,20 +20,26 @@ public class GameFunctions : MonoBehaviour
     // Per Textan
     public TMP_Text textInfo;
     public TMP_Text healthInfo;
-    public TMP_Text sen;
 
     // Per variabelan
     public bool isPaused;
     private bool isAlive;
+    public int level;
 
     // Per scriptan
     public FpsMovement cam;
     public PlayerHealth playerHealth;
-    
+    public EnemyAI enemyAI;
+
+    public AudioSource bimp;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        if (PlayerPrefs.GetInt("saveLevel") < 0)
+        {
+            PlayerPrefs.SetInt("saveLevel",0);
+        }
         Time.timeScale = 1;
         isPaused = false;
         isAlive = true;
@@ -60,8 +66,7 @@ public class GameFunctions : MonoBehaviour
         {
             Time.timeScale = 0;
             pausePanel.SetActive(true);
-            sen.text = "Ur Sens : " + cam.sensitivity.ToString();
-            textInfo.text = "Game is Paused";
+            textInfo.enabled = false; 
             Cursor.lockState = CursorLockMode.Confined;
             isPaused = true;
         }
@@ -69,29 +74,19 @@ public class GameFunctions : MonoBehaviour
         {
             Time.timeScale = 1;
             pausePanel.SetActive(false);
-            textInfo.text = "Press Esc to Pause";
+            textInfo.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             isPaused = false;
         }
     }
 
-    /**
-     * Fungsi Catched akan dijalankan apabila ghost menyentuh player
-     *  (OTW DIHAPUS KRN GAJADI DIPAKE)
-     */
-    public void Catched()
-    {
-        Time.timeScale = 0;
-        deathPanel.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
-        isPaused = true;
-        isAlive = false;
-    }
+
 
     public void Respawn()
     {
         player.transform.position = playerHealth.lastCheckpoint;
         CloseDeathPanel();
+        enemyAI.DelayEnemy(2f);
     }
 
     public void setIsAlive(bool bol)
@@ -106,7 +101,13 @@ public class GameFunctions : MonoBehaviour
         isPaused = true;
         GUICanvas.SetActive(false);
         winPanel.SetActive(true);
-        sen.text = "Njirr jago amat!";
+        int currentLevel = PlayerPrefs.GetInt("saveLevel", 0);
+        if ( currentLevel < level)
+        {
+            currentLevel += 1;
+            PlayerPrefs.SetInt("saveLevel", currentLevel);
+            bimp.Play(); // Buat debugging
+        }
     }
 
     public void ShowDeathPanel()
@@ -134,10 +135,20 @@ public class GameFunctions : MonoBehaviour
     {
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
-        healthInfo.text = "Lives' : " + playerHealth.GetCurrentLive().ToString();
         isPaused = true;
         isAlive = false;
         GUICanvas.SetActive(false);
         gameOverPanel.SetActive(true);
+    }
+
+    public void CloseGameOverPanel()
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        isPaused = false;
+        isAlive = true;
+        GUICanvas.SetActive(true);
+        healthInfo.text = "Lives : " + playerHealth.GetCurrentLive().ToString();
+        gameOverPanel.SetActive(false);
     }
 }
