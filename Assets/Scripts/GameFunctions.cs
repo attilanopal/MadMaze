@@ -97,10 +97,10 @@ public class GameFunctions : MonoBehaviour
     public void Win()
     {
         Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.Confined;
         isPaused = true;
         GUICanvas.SetActive(false);
         winPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
         int currentLevel = PlayerPrefs.GetInt("saveLevel", 0);
         if ( currentLevel < level)
         {
@@ -113,11 +113,11 @@ public class GameFunctions : MonoBehaviour
     public void ShowDeathPanel()
     {
         Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.Confined;
         isPaused = true;
         isAlive = false;
         GUICanvas.SetActive(false);
         deathPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void CloseDeathPanel()
     {
@@ -134,11 +134,11 @@ public class GameFunctions : MonoBehaviour
     public void ShowGameOverPanel()
     {
         Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.Confined;
         isPaused = true;
         isAlive = false;
         GUICanvas.SetActive(false);
         gameOverPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void CloseGameOverPanel()
